@@ -38,7 +38,7 @@ export default function Home(props: HomeProps) {
         <button onClick={(): Promise<void> => signIn()}>Sign in</button>
       </>}
     </div>
-    
+    <div></div>
     <div>
       {session && <>
         Signed in as {session.user.email} <br/>
