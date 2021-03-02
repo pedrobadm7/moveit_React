@@ -1,12 +1,10 @@
-import '../styles/global.css';
+import "../styles/global.css";
+import { Provider } from "next-auth/client";
 
-import { ChallengesProvider } from '../contexts/ChallengesContext';
-import { CountdownProvider } from '../contexts/CountdownContext';
-
-function MyApp({Component, pageProps }) {
-    return(  
-        <Component {...pageProps} />   
-    ) 
+function MyApp({ Component, pageProps }) {
+  return (
+      <Component {...pageProps} />
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -11,6 +11,8 @@ import { ChallengeBox } from "../components/ChallengeBox";
 import { CountdownProvider } from '../contexts/CountdownContext';
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 
+import { signIn, signOut, useSession } from 'next-auth/client'
+
 interface HomeProps{
   level: number;
   currentExperience: number;
@@ -18,6 +20,8 @@ interface HomeProps{
 }
 
 export default function Home(props: HomeProps) {
+  const [ session, loading ] = useSession()
+
   return (
     <ChallengesProvider
       level={props.level}
@@ -28,8 +32,21 @@ export default function Home(props: HomeProps) {
         <Head>
           <title>Início | moveit </title>
         </Head>
-
+    <div>
+      {!session && <>
+        Not signed in <br/>
+        <button onClick={(): Promise<void> => signIn()}>Sign in</button>
+      </>}
+    </div>
     
+    <div>
+      {session && <>
+        Signed in as {session.user.email} <br/>
+        <button onClick={(): Promise<void> => signOut()}>Sign out</button>
+      </>}
+    </div>
+    
+
       <ExperienceBar />
       
       <CountdownProvider>
